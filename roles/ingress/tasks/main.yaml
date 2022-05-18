@@ -1,0 +1,3 @@
+- name: Configure Ingress Controller
+  kubernetes.core.k8s:
+    resource_definition: "{{ lookup('template', 'templates/ingresscontroller.yaml.j2') }}"

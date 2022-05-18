@@ -1,0 +1,7 @@
+- name: Deploy ODF Operator
+  ansible.builtin.include_tasks:
+    file: operator.yaml
+
+- name: Create ODF StorageCluster
+  ansible.builtin.include_tasks:
+    file: storagecluster.yaml

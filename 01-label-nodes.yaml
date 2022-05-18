@@ -1,0 +1,42 @@
+- name: Label Cluster Nodes
+  gather_facts: no
+  hosts: localhost
+  tasks:
+    - name: Call Node Label Role
+      ansible.builtin.include_role:
+        name: node-labels
+      vars:
+        nodes:
+          - name: ocs-node0.alice.lab.uc2.io
+            labels:
+              node-role.kubernetes.io/worker: ""
+              node-role.kubernetes.io/infra: ""
+              node-role.kubernetes.io/ocs: ""
+              cluster.ocs.openshift.io/openshift-storage: ""
+          - name: ocs-node1.alice.lab.uc2.io
+            labels:
+              node-role.kubernetes.io/worker: ""
+              node-role.kubernetes.io/infra: ""
+              node-role.kubernetes.io/ocs: ""
+              cluster.ocs.openshift.io/openshift-storage: ""
+          - name: ocs-node2.alice.lab.uc2.io
+            labels:
+              node-role.kubernetes.io/worker: ""
+              node-role.kubernetes.io/infra: ""
+              node-role.kubernetes.io/ocs: ""
+              cluster.ocs.openshift.io/openshift-storage: ""
+          - name: infra-node0.alice.lab.uc2.io
+            labels:
+              node-role.kubernetes.io/worker: ""
+              node-role.kubernetes.io/infra: ""
+              ingress-controller: ""
+          - name: infra-node1.alice.lab.uc2.io
+            labels:
+              node-role.kubernetes.io/worker: ""
+              node-role.kubernetes.io/infra: ""
+              ingress-controller: ""
+          - name: infra-node2.alice.lab.uc2.io
+            labels:
+              node-role.kubernetes.io/worker: ""
+              node-role.kubernetes.io/infra: ""
+              ingress-controller: ""

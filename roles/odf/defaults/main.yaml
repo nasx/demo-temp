@@ -1,0 +1,9 @@
+odf_channel: stable-4.10
+odf_installplan_approval: Automatic
+odf_namespace: openshift-storage
+odf_operatorgroup_name: openshift-storage-operatorgroup
+odf_subscription_name: odf-operator
+storagecluster_deviceset_name: odf-deviceset-thin
+storagecluster_name: odf-storagecluster
+storagecluster_osd_size: "2Ti"
+storagecluster_storageclass_name: thin

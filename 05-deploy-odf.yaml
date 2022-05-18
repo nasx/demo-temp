@@ -1,0 +1,9 @@
+- name: Deploy ODF Cluster
+  gather_facts: no
+  hosts: localhost
+  tasks:
+    - name: Call ODF Role
+      ansible.builtin.include_role:
+        name: odf
+      vars:
+        odf_namespace: openshift-storage

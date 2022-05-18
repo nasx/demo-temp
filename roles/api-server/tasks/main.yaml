@@ -1,0 +1,3 @@
+- name: Configure API Server
+  kubernetes.core.k8s:
+    resource_definition: "{{ lookup('template', 'templates/apiserver.yaml.j2') }}"

@@ -1,0 +1,3 @@
+ingress_name: default
+ingress_replicas: 3
+ingress_tls_secret_name: wildcard-cert

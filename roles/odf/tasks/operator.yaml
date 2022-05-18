@@ -1,0 +1,39 @@
+- name: Create ODF Namespace
+  kubernetes.core.k8s:
+    resource_definition:
+      apiVersion: v1
+      kind: Namespace
+      metadata:
+        name: "{{ odf_namespace }}"
+        labels:
+          openshift.io/cluster-monitoring: "true"
+      spec: {}
+
+- name: Create ODF Operator Group
+  kubernetes.core.k8s:
+    resource_definition:
+      apiVersion: operators.coreos.com/v1
+      kind: OperatorGroup
+      metadata:
+        name: "{{ odf_operatorgroup_name }}"
+        namespace: "{{ odf_namespace }}"
+      spec:
+        targetNamespaces:
+          - "{{ odf_namespace }}"
+
+- name: Create ODF Operator Subscription
+  kubernetes.core.k8s:
+    resource_definition:
+      apiVersion: operators.coreos.com/v1alpha1
+      kind: Subscription
+      metadata:
+        labels:
+          operators.coreos.com/odf-operator.openshift-storage: ""
+        name: "{{ odf_subscription_name }}"
+        namespace: "{{ odf_namespace }}"
+      spec:
+        channel: "{{ odf_channel }}"
+        installPlanApproval: "{{ odf_installplan_approval }}"
+        name: "{{ odf_subscription_name }}"
+        source: redhat-operators
+        sourceNamespace: openshift-marketplace

@@ -1,0 +1,4 @@
+- name: Label Nodes
+  kubernetes.core.k8s:
+    resource_definition: "{{ lookup('template', 'templates/node.yaml.j2') }}"
+  loop: "{{ nodes }}"

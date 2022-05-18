@@ -1,0 +1,9 @@
+- name: Configure API Server
+  gather_facts: no
+  hosts: localhost
+  tasks:
+    - name: Call api-server Role
+      ansible.builtin.include_role:
+        name: api-server
+      vars:
+        api_server_dns: api.alice.lab.uc2.io

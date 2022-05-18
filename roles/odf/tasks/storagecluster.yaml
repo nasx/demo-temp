@@ -1,0 +1,45 @@
+- name: Create StorageCluster Resource
+  kubernetes.core.k8s:
+    resource_definition:
+      apiVersion: ocs.openshift.io/v1
+      kind: StorageCluster
+      metadata:
+        annotations:
+          uninstall.ocs.openshift.io/cleanup-policy: delete
+          uninstall.ocs.openshift.io/mode: graceful
+        name: "{{ storagecluster_name }}"
+        namespace: "{{ odf_namespace }}"
+      spec:
+        arbiter: {}
+        encryption:
+          kms: {}
+        externalStorage: {}
+        managedResources:
+          cephBlockPools: {}
+          cephConfig: {}
+          cephDashboard: {}
+          cephFilesystems: {}
+          cephObjectStoreUsers: {}
+          cephObjectStores: {}
+        mirroring: {}
+        nodeTopologies: {}
+        storageDeviceSets:
+        - config: {}
+          count: 1
+          dataPVCTemplate:
+            metadata: {}
+            spec:
+              accessModes:
+              - ReadWriteOnce
+              resources:
+                requests:
+                  storage: "{{ storagecluster_osd_size }}"
+              storageClassName: "{{ storagecluster_storageclass_name }}"
+              volumeMode: Block
+            status: {}
+          name: "{{ storagecluster_deviceset_name }}"
+          placement: {}
+          portable: true
+          preparePlacement: {}
+          replica: 3
+          resources: {}

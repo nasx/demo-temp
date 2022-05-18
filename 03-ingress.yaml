@@ -1,0 +1,7 @@
+- name: Configure Ingress Controller
+  gather_facts: no
+  hosts: localhost
+  tasks:
+    - name: Call ingress Role
+      ansible.builtin.include_role:
+        name: ingress
